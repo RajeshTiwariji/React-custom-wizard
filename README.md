@@ -3,11 +3,7 @@ React easy wizard is multistep from throw a bunch of react components at it (dat
 Access provides several quick-create form tools on the Create tab, each of which lets you create a form with a single click. However, if you want to be more selective about what fields appear on the form, you can use the Form Wizard instead.
 
 
-### what does it do?
-something like this of course:
 
-![react easy wizard]
-(https://github.com/RajeshTiwariji/React_wizard/tree/master/LICENSE.md)
 
 
 
@@ -41,13 +37,6 @@ const steps =
 ```
 
 
-
-### dev
-- all node source is in src/main.js
-- you need to install dependencies first `npm install`
-- make any changes and run `npm run build` to transpile the jsx into `dist`
-- the transpilation is run as an auto pre-publish task so it should usually be up to date when consumed via npm
-- `npm run build-example` builds and packs the example app into the 'docs' folder so it can be accessed via ghpages
 
 
 ### run example in browser
