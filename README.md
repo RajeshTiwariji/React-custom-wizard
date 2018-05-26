@@ -66,8 +66,19 @@ npm install --save react-easy-wizard
 
 ```
 
+<<<<<<< HEAD
 require dependency for animation
 ```
 'react-transition-group'
+=======
+
+### run example in browser
+A full example is found in the `src/examples` directory.
+
+- run `npm install`
+- then run `npm run example`
+- then go to `http://localhost:8080/webpack-dev-server/src/examples/index.html` in your browser
+- hot reload will work as you dev
+>>>>>>> b613d2561921d58a2055057dd3f6794f65524bd2
 
 ````
