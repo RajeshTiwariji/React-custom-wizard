@@ -1,33 +1,37 @@
 {
-  "name": "react-custom-wizard",
-  "version": "1.0.0",
-  "description": "A multistep form component for react",
-  "main": "./dist/main.js",
-  "scripts": {
-    "build": "node ./node_modules/gulp/bin/gulp.js build",
-    "lint": "node ./node_modules/gulp/bin/gulp.js lint",
-    "prepublish": "npm run build",
-    "example": "webpack-dev-server",
-    "build-example": "node ./node_modules/gulp/bin/gulp.js build-example"
+  "_from": "react-custom-wizard",
+  "_id": "react-custom-wizard@1.0.5",
+  "_inBundle": false,
+  "_integrity": "sha512-wQx5cDYS2Bc9YKrtS7KIdI12xhHGSdhZ1TepsqqiMueZvFl4lv3xyvjabt+vz8th9uuXahfPPfK/aN1Insc3hg==",
+  "_location": "/react-custom-wizard",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "react-custom-wizard",
+    "name": "react-custom-wizard",
+    "escapedName": "react-custom-wizard",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/RajeshTiwariji/React_wizard"
-  },
-  "keywords": [
-    "react",
-    "multistep",
-    "stepper",
-    "wizard",
-    "multistep form",
-    "custom"
+  "_requiredBy": [
+    "#USER",
+    "/"
   ],
-  "author": "@rajesh_awesomejs",
-  "license": "ISC",
+  "_resolved": "https://registry.npmjs.org/react-custom-wizard/-/react-custom-wizard-1.0.5.tgz",
+  "_shasum": "eddbde9a9f66705269c95937987d64f8631bf4ac",
+  "_spec": "react-custom-wizard",
+  "_where": "C:\\code\\react-custom-wizard",
+  "author": {
+    "name": "@rajesh_awesomejs"
+  },
   "bugs": {
     "url": "https://github.com/RajeshTiwariji/React_wizard/issues"
   },
-  "homepage": "https://github.com/RajeshTiwariji/React_wizard#readme",
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "A multistep form component for react",
   "devDependencies": {
     "babel-core": "^6.21.0",
     "babel-eslint": "^7.1.1",
@@ -58,8 +62,8 @@
     "promise": "^7.1.1",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4",
     "react-addons-test-utils": "^15.5.1",
+    "react-dom": "^15.5.4",
     "react-validation-mixin": "^5.4.0",
     "sinon": "^1.17.7",
     "sinon-chai": "^2.8.0",
@@ -68,8 +72,33 @@
     "webpack-dev-server": "^1.14.1",
     "webpack-stream": "^3.2.0"
   },
+  "homepage": "https://github.com/RajeshTiwariji/React_wizard#readme",
+  "keywords": [
+    "react",
+    "multistep",
+    "stepper",
+    "wizard",
+    "multistep form",
+    "custom"
+  ],
+  "license": "ISC",
+  "main": "./dist/main.js",
+  "name": "react-custom-wizard",
   "peerDependencies": {
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
-  }
+    "react-dom": "^15.5.4",
+    "react-transition-group": "^2.3.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RajeshTiwariji/React_wizard.git"
+  },
+  "scripts": {
+    "build": "node ./node_modules/gulp/bin/gulp.js build",
+    "build-example": "node ./node_modules/gulp/bin/gulp.js build-example",
+    "example": "webpack-dev-server",
+    "lint": "node ./node_modules/gulp/bin/gulp.js lint",
+    "prepublish": "npm run build"
+  },
+  "version": "1.0.5"
 }

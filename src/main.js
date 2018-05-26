@@ -2,158 +2,215 @@
  * Created by @rajesh on 19/5/18.
  */
 import React, { Component } from 'react';
+import styles from './css/main.css';
+import PropTypes from 'prop-types';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
-export default class CustomWizard extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            currentStep: 1,
-            steps : props.steps
-        };
 
-        this._next = this._next.bind(this);
-        this._prev = this._prev.bind(this);
-    }
+class CustomWizard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      ...props
+    };
 
-    _next() {
-        let stepslength = this.state.steps.length;
-        let currentStep = this.state.currentStep;
+    this._next = this._next.bind(this);
+    this._prev = this._prev.bind(this);
+  }
+
+  componentWillMount() {
+
+  }
+  _next() {
+    const stepslength = this.state.steps.length;
+    let currentStep = this.state.currentStep;
         // Make sure currentStep is set to something reasonable
-        if (currentStep >= stepslength) {
-            currentStep = stepslength;
-        } else {
-            currentStep = currentStep + 1;
-        }
-        this.setState({
-            currentStep: currentStep,
-        });
+    if (currentStep >= stepslength) {
+      currentStep = stepslength;
+    } else {
+      currentStep += 1;
+    }
+    this.setState({
+      currentStep
+    });
+  }
+
+  _prev() {
+    let currentStep = this.state.currentStep;
+    if (currentStep <= 1) {
+      currentStep = 1;
+    } else {
+      currentStep -= 1;
     }
 
-    _prev() {
-        let currentStep = this.state.currentStep;
-        if (currentStep <= 1) {
-            currentStep = 1;
-        } else {
-            currentStep = currentStep - 1;
-        }
+    this.setState({
+      currentStep
+    });
+  }
 
-        this.setState({
-            currentStep: currentStep
-        });
-    }
+  _showPrevious() {
+    return this.state.currentStep !== 1;
+  }
+  _showNext() {
+    return this.state.currentStep !== this.state.steps.length;
+  }
+  _handlestepclick(value) {
+    this.setState({
+      currentStep: value
+    });
+  }
 
-    _showPrevious(){
-        return this.state.currentStep !== 1;
-    }
-    _showNext(){
-        return this.state.currentStep !== this.state.steps.length;
-    }
-    _handlestepclick(value){
-      this.setState({
-        currentStep: value,
-      });
-    }
+  render() {
+    const { classOnHeading, currentStep, textOnNextbtn, classNext, classPrevious, textOnPreviousbtn } = this.state;
+    const FadeTransition = props => (
+            <CSSTransition
+                {...props}
+                classNames="example"
+                timeout={{ enter: 700, exit: 300 }}
+            />
+        );
+    const SpecificStory = this.state.steps[currentStep - 1].component;
+    const heading = this.state.steps[currentStep - 1].heading;
 
-    render() {
-        let currentStep = this.state.currentStep;
-        const SpecificStory = this.state.steps[currentStep-1].component;
-        return(
+
+    return (
             <div>
-              <WizardStep2
+                {heading ? (<WizardHeader heading={heading} classOnHeading={classOnHeading} />) : undefined}
+              <WizardStep1
                   currentState={this.state}
-                  stepclick={(value)=>{this._handlestepclick(value)}}
+                  stepclick={(value) => { this._handlestepclick(value); }}
               />
-              <div id="fieldsets">
+              <TransitionGroup>
+                <FadeTransition>
                   <SpecificStory
                       currentStep={currentStep}
                       afterValidPrev={this._prev}
                       afterValid={this._next}
                   />
+                </FadeTransition>
+              </TransitionGroup>
+              <div>
+                  { this._showPrevious() &&
+                  (<button
+
+                      onClick={() => { this._prev(); }}
+                      className={classPrevious}
+                  >
+                      {textOnPreviousbtn}
+                  </button>)
+
+                  }
+                  {'\u00A0'}
+                  { this._showNext()
+                  && (<button
+                      className={classNext}
+                      onClick={() => { this._next(); }}
+                  >
+                      {textOnNextbtn}
+                  </button>)
+                  }
+
               </div>
-                <div>
-                    { this._showPrevious()
-                        ? <button 
-                        
-                        onClick={()=>{this._prev()}}
-                                  className="btn btn-default btn-xxs previous"
-                        >
-                            Previous
-                        </button> : <span></span>
-
-                    }
-                    {'\u00A0'}
-                    { this._showNext()
-                        ? <button 
-                            className="btn btn-primary btn-xxs next"
-                            onClick={()=>{this._next()}}
-                        >
-                            Next
-                        </button> : <span></span>
-                    }
-
-                </div>
             </div>
-        );
-    }
+    );
+  }
 }
 class WizardStep1 extends React.Component {
-  constructor(props){
-      super(props)
-      this.hendlestepclick=this.hendlestepclick.bind(this)
+  constructor(props) {
+    super(props);
+    this.hendlestepclick = this.hendlestepclick.bind(this);
   }
-  hendlestepclick(value){
-  this.props.stepclick(value);
+  hendlestepclick(value) {
+    this.props.stepclick(value);
   }
-  render(){
-      const {  currentStep, steps } = this.props.currentState;
-      return(
-                 <ul id="section-tabs">
-                  { steps.map((value,Index)=>(
-                      <li  key={value.title} className={(Index===currentStep-1) ? "current active" : ""} onClick={()=>{this.hendlestepclick(Index+1)}}>
-                      {value.title}
-                      </li> 
-                  ))}
-              </ul>
-      )
+  render() {
+    const { currentStep, steps } = this.props.currentState;
+    return (
+            <ul id="sectionTabs">
+                { steps.map((value, Index) => (
+                    <li key={value.tag} className={(Index === currentStep - 1) ? ('current active') : undefined } onClick={() => { this.hendlestepclick(Index + 1); }}>
+                        {value.tag}
+                    </li>
+                ))}
+            </ul>
+    );
+  }
+
+}
+
+class WizardHeader extends React.Component {
+
+  render() {
+    return (
+            <div className={this.props.classOnHeading}>
+                {this.props.heading}
+            </div>
+    );
   }
 
 }
 
 class WizardStep2 extends React.Component {
-    constructor(props){
-        super(props)
-    }
-    getStyle(active) {
-        return {
-            backgroundColor: active ? 'rgb(253, 185, 63)' : '#319ea7'
-        }
-    }
+  constructor(props) {
+    super(props);
+  }
+  getStyle(active) {
+    return {
+      backgroundColor: active ? 'rgb(253, 185, 63)' : '#319ea7'
+    };
+  }
 
-    render(){
-        const {  currentStep, steps } = this.props.currentState;
+  render() {
+    const { currentStep, steps } = this.props.currentState;
 
-        return(
+    return (
             <div>
-                <div className="header">
-                    <h2>
-                        {steps[currentStep-1].title}
-                    </h2>
-                </div>
-                <div className="stepper">
-                    { steps.map((value,Index)=>(
-                      <span key={value.title}>
-                        <input className="stepper__input" id={`stepper-3-${Index}`} name="stepper-3" type="radio" onChange={()=>{}}  checked={ (Index===currentStep-1) } ></input>
+              <div className="stepper">
+                  { steps.map((value, Index) => (
+                      <span key={value.tag}>
+                        <input className="stepper__input" id={`stepper-3-${Index}`} name="stepper-3" type="radio" onChange={() => {}} checked={ (Index === currentStep - 1) } ></input>
                         <div className="stepper__step">
                           <label className="stepper__button" htmlFor={`stepper-3-${Index}`}>
-                          <p className="stepper__content"> {value.title}</p>
                           </label>
                         </div>
                         </span>
-                    ))}
-                </div>
+                  ))}
+              </div>
             </div>
 
-        )
-    }
+    );
+  }
 
 }
+
+CustomWizard.defaultProps = {
+  showHeading: true,
+  showNameState: true,
+  validation: false,
+  currentStep: 1,
+  classOnHeading: 'wizard-heading',
+  textOnNextbtn: 'Next',
+  classNext: 'btnss next',
+  textOnPreviousbtn: 'Previous',
+  classPrevious: 'btnss previous'
+};
+
+
+CustomWizard.propTypes = {
+  steps: PropTypes.arrayOf(PropTypes.shape({
+    tag: PropTypes.string.isRequired,
+    component: PropTypes.constructor.isRequired
+  })).isRequired,
+  showHeading: PropTypes.bool,
+  showNameState: PropTypes.bool,
+  validation: PropTypes.bool,
+  currentStep: PropTypes.number,
+  classOnHeading: PropTypes.string,
+  textOnNextbtn: PropTypes.string,
+  classNext: PropTypes.string,
+  classPrevious: PropTypes.string,
+  textOnPreviousbtn: PropTypes.string
+};
+
+
+export default (CustomWizard);

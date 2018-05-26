@@ -62,27 +62,27 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _main = __webpack_require__(184);
+	var _main = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../dist/main\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
 	var _main2 = _interopRequireDefault(_main);
 
-	var _Step = __webpack_require__(185);
+	var _Step = __webpack_require__(184);
 
 	var _Step2 = _interopRequireDefault(_Step);
 
-	var _Step3 = __webpack_require__(186);
+	var _Step3 = __webpack_require__(185);
 
 	var _Step4 = _interopRequireDefault(_Step3);
 
-	var _Step5 = __webpack_require__(187);
+	var _Step5 = __webpack_require__(186);
 
 	var _Step6 = _interopRequireDefault(_Step5);
 
-	var _Step7 = __webpack_require__(188);
+	var _Step7 = __webpack_require__(187);
 
 	var _Step8 = _interopRequireDefault(_Step7);
 
-	var _Step9 = __webpack_require__(189);
+	var _Step9 = __webpack_require__(188);
 
 	var _Step10 = _interopRequireDefault(_Step9);
 
@@ -131,7 +131,7 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var steps = [{ title: 'Step1', component: _Step2.default }, { title: 'Step2', component: _Step4.default }, { title: 'Step3', component: _Step6.default }, { title: 'step4', component: _Step8.default }, { title: 'Step5', component: _Step10.default }];
+	      var steps = [{ tag: 'Step 1', component: _Step2.default, heading: "Step 1: Basic store info and platform" }, { tag: 'Step 2', component: _Step4.default, heading: "Step 2: Additional store info" }, { tag: 'Step 3', component: _Step6.default, heading: "Step 3: Setup the connection to your store" }, { tag: 'Step 4', component: _Step8.default, heading: "Step 4: Install the plugin we need to continue" }, { tag: 'Step 5', component: _Step10.default, heading: "" }];
 
 	      return _react2.default.createElement(
 	        'div',
@@ -153,7 +153,7 @@
 	exports.default = Example;
 
 
-	__webpack_require__(200);
+	__webpack_require__(199);
 
 	_reactDom2.default.render(_react2.default.createElement(Example, null), document.getElementById('root'));
 
@@ -22028,270 +22028,6 @@
 /* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Created by @rajesh on 19/5/18.
-	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
-
-
-	var CustomWizard = function (_Component) {
-	    _inherits(CustomWizard, _Component);
-
-	    function CustomWizard(props) {
-	        _classCallCheck(this, CustomWizard);
-
-	        var _this = _possibleConstructorReturn(this, (CustomWizard.__proto__ || Object.getPrototypeOf(CustomWizard)).call(this, props));
-
-	        _this.state = {
-	            currentStep: 1,
-	            steps: props.steps
-	        };
-
-	        _this._next = _this._next.bind(_this);
-	        _this._prev = _this._prev.bind(_this);
-	        return _this;
-	    }
-
-	    _createClass(CustomWizard, [{
-	        key: "_next",
-	        value: function _next() {
-	            var stepslength = this.state.steps.length;
-	            var currentStep = this.state.currentStep;
-	            // Make sure currentStep is set to something reasonable
-	            if (currentStep >= stepslength) {
-	                currentStep = stepslength;
-	            } else {
-	                currentStep = currentStep + 1;
-	            }
-	            this.setState({
-	                currentStep: currentStep
-	            });
-	        }
-	    }, {
-	        key: "_prev",
-	        value: function _prev() {
-	            var currentStep = this.state.currentStep;
-	            if (currentStep <= 1) {
-	                currentStep = 1;
-	            } else {
-	                currentStep = currentStep - 1;
-	            }
-
-	            this.setState({
-	                currentStep: currentStep
-	            });
-	        }
-	    }, {
-	        key: "_showPrevious",
-	        value: function _showPrevious() {
-	            return this.state.currentStep !== 1;
-	        }
-	    }, {
-	        key: "_showNext",
-	        value: function _showNext() {
-	            return this.state.currentStep !== this.state.steps.length;
-	        }
-	    }, {
-	        key: "_handlestepclick",
-	        value: function _handlestepclick(value) {
-	            this.setState({
-	                currentStep: value
-	            });
-	        }
-	    }, {
-	        key: "render",
-	        value: function render() {
-	            var _this2 = this;
-
-	            var currentStep = this.state.currentStep;
-	            var SpecificStory = this.state.steps[currentStep - 1].component;
-	            return _react2.default.createElement(
-	                "div",
-	                null,
-	                _react2.default.createElement(WizardStep2, {
-	                    currentState: this.state,
-	                    stepclick: function stepclick(value) {
-	                        _this2._handlestepclick(value);
-	                    }
-	                }),
-	                _react2.default.createElement(
-	                    "div",
-	                    { id: "fieldsets" },
-	                    _react2.default.createElement(SpecificStory, {
-	                        currentStep: currentStep,
-	                        afterValidPrev: this._prev,
-	                        afterValid: this._next
-	                    })
-	                ),
-	                _react2.default.createElement(
-	                    "div",
-	                    null,
-	                    this._showPrevious() ? _react2.default.createElement(
-	                        "button",
-	                        {
-
-	                            onClick: function onClick() {
-	                                _this2._prev();
-	                            },
-	                            className: "btn btn-default btn-xxs previous"
-	                        },
-	                        "Previous"
-	                    ) : _react2.default.createElement("span", null),
-	                    "\xA0",
-	                    this._showNext() ? _react2.default.createElement(
-	                        "button",
-	                        {
-	                            className: "btn btn-primary btn-xxs next",
-	                            onClick: function onClick() {
-	                                _this2._next();
-	                            }
-	                        },
-	                        "Next"
-	                    ) : _react2.default.createElement("span", null)
-	                )
-	            );
-	        }
-	    }]);
-
-	    return CustomWizard;
-	}(_react.Component);
-
-	exports.default = CustomWizard;
-
-	var WizardStep1 = function (_React$Component) {
-	    _inherits(WizardStep1, _React$Component);
-
-	    function WizardStep1(props) {
-	        _classCallCheck(this, WizardStep1);
-
-	        var _this3 = _possibleConstructorReturn(this, (WizardStep1.__proto__ || Object.getPrototypeOf(WizardStep1)).call(this, props));
-
-	        _this3.hendlestepclick = _this3.hendlestepclick.bind(_this3);
-	        return _this3;
-	    }
-
-	    _createClass(WizardStep1, [{
-	        key: "hendlestepclick",
-	        value: function hendlestepclick(value) {
-	            this.props.stepclick(value);
-	        }
-	    }, {
-	        key: "render",
-	        value: function render() {
-	            var _this4 = this;
-
-	            var _props$currentState = this.props.currentState,
-	                currentStep = _props$currentState.currentStep,
-	                steps = _props$currentState.steps;
-
-	            return _react2.default.createElement(
-	                "ul",
-	                { id: "section-tabs" },
-	                steps.map(function (value, Index) {
-	                    return _react2.default.createElement(
-	                        "li",
-	                        { key: value.title, className: Index === currentStep - 1 ? "current active" : "", onClick: function onClick() {
-	                                _this4.hendlestepclick(Index + 1);
-	                            } },
-	                        value.title
-	                    );
-	                })
-	            );
-	        }
-	    }]);
-
-	    return WizardStep1;
-	}(_react2.default.Component);
-
-	var WizardStep2 = function (_React$Component2) {
-	    _inherits(WizardStep2, _React$Component2);
-
-	    function WizardStep2(props) {
-	        _classCallCheck(this, WizardStep2);
-
-	        return _possibleConstructorReturn(this, (WizardStep2.__proto__ || Object.getPrototypeOf(WizardStep2)).call(this, props));
-	    }
-
-	    _createClass(WizardStep2, [{
-	        key: "getStyle",
-	        value: function getStyle(active) {
-	            return {
-	                backgroundColor: active ? 'rgb(253, 185, 63)' : '#319ea7'
-	            };
-	        }
-	    }, {
-	        key: "render",
-	        value: function render() {
-	            var _props$currentState2 = this.props.currentState,
-	                currentStep = _props$currentState2.currentStep,
-	                steps = _props$currentState2.steps;
-
-
-	            return _react2.default.createElement(
-	                "div",
-	                null,
-	                _react2.default.createElement(
-	                    "div",
-	                    { className: "header" },
-	                    _react2.default.createElement(
-	                        "h2",
-	                        null,
-	                        steps[currentStep - 1].title
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    "div",
-	                    { className: "stepper" },
-	                    steps.map(function (value, Index) {
-	                        return _react2.default.createElement(
-	                            "span",
-	                            { key: value.title },
-	                            _react2.default.createElement("input", { className: "stepper__input", id: "stepper-3-" + Index, name: "stepper-3", type: "radio", onChange: function onChange() {}, checked: Index === currentStep - 1 }),
-	                            _react2.default.createElement(
-	                                "div",
-	                                { className: "stepper__step" },
-	                                _react2.default.createElement(
-	                                    "label",
-	                                    { className: "stepper__button", htmlFor: "stepper-3-" + Index },
-	                                    _react2.default.createElement(
-	                                        "p",
-	                                        { className: "stepper__content" },
-	                                        " ",
-	                                        value.title
-	                                    )
-	                                )
-	                            )
-	                        );
-	                    })
-	                )
-	            );
-	        }
-	    }]);
-
-	    return WizardStep2;
-	}(_react2.default.Component);
-
-/***/ }),
-/* 185 */
-/***/ (function(module, exports, __webpack_require__) {
-
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
@@ -22389,7 +22125,7 @@
 	exports.default = Step1;
 
 /***/ }),
-/* 186 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22434,7 +22170,7 @@
 	exports.default = Step2;
 
 /***/ }),
-/* 187 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22513,7 +22249,7 @@
 	exports.default = Step3;
 
 /***/ }),
-/* 188 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22591,7 +22327,7 @@
 	exports.default = Step4;
 
 /***/ }),
-/* 189 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22606,7 +22342,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _promise = __webpack_require__(190);
+	var _promise = __webpack_require__(189);
 
 	var _promise2 = _interopRequireDefault(_promise);
 
@@ -22648,12 +22384,26 @@
 	exports.default = Step5;
 
 /***/ }),
+/* 189 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	module.exports = __webpack_require__(190)
+
+
+/***/ }),
 /* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	module.exports = __webpack_require__(191)
+	module.exports = __webpack_require__(191);
+	__webpack_require__(193);
+	__webpack_require__(194);
+	__webpack_require__(195);
+	__webpack_require__(196);
+	__webpack_require__(198);
 
 
 /***/ }),
@@ -22662,21 +22412,7 @@
 
 	'use strict';
 
-	module.exports = __webpack_require__(192);
-	__webpack_require__(194);
-	__webpack_require__(195);
-	__webpack_require__(196);
-	__webpack_require__(197);
-	__webpack_require__(199);
-
-
-/***/ }),
-/* 192 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var asap = __webpack_require__(193);
+	var asap = __webpack_require__(192);
 
 	function noop() {}
 
@@ -22890,7 +22626,7 @@
 
 
 /***/ }),
-/* 193 */
+/* 192 */
 /***/ (function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {"use strict";
@@ -23120,12 +22856,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
-/* 194 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var Promise = __webpack_require__(192);
+	var Promise = __webpack_require__(191);
 
 	module.exports = Promise;
 	Promise.prototype.done = function (onFulfilled, onRejected) {
@@ -23139,12 +22875,12 @@
 
 
 /***/ }),
-/* 195 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var Promise = __webpack_require__(192);
+	var Promise = __webpack_require__(191);
 
 	module.exports = Promise;
 	Promise.prototype['finally'] = function (f) {
@@ -23161,14 +22897,14 @@
 
 
 /***/ }),
-/* 196 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	//This file contains the ES6 extensions to the core Promises/A+ API
 
-	var Promise = __webpack_require__(192);
+	var Promise = __webpack_require__(191);
 
 	module.exports = Promise;
 
@@ -23274,7 +23010,7 @@
 
 
 /***/ }),
-/* 197 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23282,8 +23018,8 @@
 	// This file contains then/promise specific extensions that are only useful
 	// for node.js interop
 
-	var Promise = __webpack_require__(192);
-	var asap = __webpack_require__(198);
+	var Promise = __webpack_require__(191);
+	var asap = __webpack_require__(197);
 
 	module.exports = Promise;
 
@@ -23410,13 +23146,13 @@
 
 
 /***/ }),
-/* 198 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	// rawAsap provides everything we need except exception management.
-	var rawAsap = __webpack_require__(193);
+	var rawAsap = __webpack_require__(192);
 	// RawTasks are recycled to reduce GC churn.
 	var freeTasks = [];
 	// We queue errors to ensure they are thrown in right order (FIFO).
@@ -23482,12 +23218,12 @@
 
 
 /***/ }),
-/* 199 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var Promise = __webpack_require__(192);
+	var Promise = __webpack_require__(191);
 
 	module.exports = Promise;
 	Promise.enableSynchronous = function () {
@@ -23550,16 +23286,16 @@
 
 
 /***/ }),
-/* 200 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(201);
+	var content = __webpack_require__(200);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(203)(content, {});
+	var update = __webpack_require__(202)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -23576,21 +23312,21 @@
 	}
 
 /***/ }),
-/* 201 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(202)();
+	exports = module.exports = __webpack_require__(201)();
 	// imports
 
 
 	// module
-	exports.push([module.id, "@charset \"UTF-8\";\r\n:root {\r\n  --s-width: 900px;\r\n  --s-gutter: 2.5rem;\r\n  --c-accent: hsl(213, 74%, 58%);\r\n}\r\n\r\n.stepper {\r\n  --s-stepper-bullet: 2rem;\r\n  --s-stepper-bullet-half: calc( var(--s-stepper-bullet) / 2 );\r\n  --step-transition: background .5s, color .5s;\r\n  --step-content: '\\2714\\FE0E';\r\n  --step-color: hsl(0, 0%, 70%);\r\n  --step-bar-bg: var(--c-accent);\r\n  --step-bullet-bg: var(--step-bar-bg);\r\n  --step-bullet-color: white;\r\n  counter-reset: current-step;\r\n  display: grid;\r\n  grid-template-columns: repeat(auto-fit, minmax(1px, 1fr));\r\n  position: relative;\r\n  z-index: 1;\r\n}\r\n\r\n\r\n.stepper__input {\r\n  counter-increment: steps;\r\n  display: none;\r\n}\r\n.stepper__step {\r\n  counter-increment: current-step;\r\n}\r\n.stepper__input:checked ~ .stepper__step {\r\n  --step-color: hsl(0, 0%, 30%);\r\n  --step-bar-bg: hsl(0, 0%, 40%);\r\n  --step-bullet-bg: var(--step-bar-bg);\r\n  --step-bullet-color: hsl(0, 0%, 20%);\r\n  --step-content: counter(current-step);\r\n}\r\n.stepper__input:checked ~ .stepper__step .stepper__content {\r\n  opacity: 0;\r\n  pointer-events: none;\r\n  -webkit-user-select: none;\r\n     -moz-user-select: none;\r\n      -ms-user-select: none;\r\n          user-select: none;\r\n}\r\n.stepper__input:checked + .stepper__step {\r\n  --step-bullet-bg: hsl(213, 70%, 50%);\r\n  --step-bullet-color: white;\r\n  --step-color: black;\r\n}\r\n.stepper__input:checked + .stepper__step .stepper__button::before {\r\n  box-shadow: 0 0 0 2px #b3b3b3;\r\n}\r\n.stepper__input:checked + .stepper__step .stepper__content {\r\n  opacity: 1;\r\n  pointer-events: auto;\r\n  -webkit-user-select: auto;\r\n     -moz-user-select: auto;\r\n      -ms-user-select: auto;\r\n          user-select: auto;\r\n}\r\n.stepper__content {\r\n  color: white;\r\n  text-align: center;\r\n  font-style: italic;\r\n  font-weight: 300;\r\n  color: var(--step-color);\r\n  transition: opacity .5s .05s;\r\n  padding: .5rem;\r\n}\r\n.stepper__content::-moz-selection {\r\n  color: black;\r\n  background: var(--step-bullet-color);\r\n}\r\n.stepper__content::selection {\r\n  color: black;\r\n  background: var(--step-bullet-color);\r\n}\r\n.stepper__button {\r\n  position: relative;\r\n  text-align: center;\r\n  color: var(--step-color);\r\n  display: block;\r\n}\r\n.stepper__button::before {\r\n  content: var(--step-content);\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  margin: 0 auto var(--s-stepper-bullet-half);\r\n  height: var(--s-stepper-bullet);\r\n  width: var(--s-stepper-bullet);\r\n  border-radius: var(--s-stepper-bullet);\r\n  transition: var(--step-transition);\r\n  background: var(--step-bullet-bg);\r\n  color: var(--step-bullet-color);\r\n}\r\n.stepper__button::after {\r\n  content: '';\r\n  position: absolute;\r\n  width: 100%;\r\n  height: calc( var(--s-stepper-bullet-half) / 2 );\r\n  background: var(--step-bar-bg);\r\n  transition: var(--step-transition);\r\n  top: var(--s-stepper-bullet-half);\r\n  left: 50%;\r\n  -webkit-transform: translate(0, -50%);\r\n          transform: translate(0, -50%);\r\n  z-index: -1;\r\n}\r\n\r\n.stepper__step:last-child .stepper__button::after {\r\n  display: none;\r\n}\r\n.stepper--flexbox {\r\n  display: flex;\r\n}\r\n.stepper--flexbox .stepper__step {\r\n  flex-grow: 1;\r\n  flex-shrink: 0;\r\n  flex-basis: 0;\r\n}\r\n\r\n\r\n\r\n\r\n#section-tabs {\r\n  font-size: 0.8em;\r\n  position: relative;\r\n  padding: 10px;\r\n  font-weight: bold;\r\n  list-style: none;\r\n  display: grid;\r\n  grid-template-columns: repeat(auto-fit, minmax(1px, 1fr));\r\n  text-transform: uppercase;\r\n}\r\n#section-tabs li {\r\n  color: #a7a7a7;\r\n  cursor: pointer;\r\n  border-left: 1px solid #aaa;\r\n  text-decoration: none;\r\n  padding: 0 6px;\r\n  float: left;\r\n  box-sizing: border-box;\r\n  text-align: center;\r\n  font-weight: bold;\r\n  line-height: 40px;\r\n  background: #ddd;\r\n  position: relative;\r\n}\r\n#section-tabs li:hover {\r\n  color: #a7a7a7;\r\n  cursor: pointer;\r\n  border-left: 1px solid #aaa;\r\n  text-decoration: none;\r\n  padding: 0 6px;\r\n  float: left;\r\n  box-sizing: border-box;\r\n  text-align: center;\r\n  font-weight: bold;\r\n  line-height: 40px;\r\n  background: rgb(233, 214, 214);\r\n  position: relative;\r\n}\r\n#section-tabs li span {\r\n  color: #bababa;\r\n}\r\n#section-tabs li.active {\r\n  color: #444;\r\n  cursor: pointer;\r\n}\r\n#section-tabs li:after {\r\n  content: \"\";\r\n  display: block;\r\n  margin-left: 0;\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0;\r\n}\r\n#section-tabs li.current {\r\n  opacity: 1;\r\n  background: #eff1f5;\r\n  z-index: 999;\r\n  border-left: none;\r\n}\r\n#section-tabs li.current:after {\r\n  border: 20px solid transparent;\r\n  border-left: 20px solid #2cbab2;\r\n}\r\n\r\n.btn {\r\n  border: none;\r\n  padding: 8px;\r\n  background: #2cbab2;\r\n  cursor: pointer;\r\n  transition: all 0.3s;\r\n  -webkit-transition: all 0.3s;\r\n  -moz-transition: all 0.3s;\r\n  color: #fff;\r\n  position: relative;\r\n  font-family: 'Merriweather Sans', sans-serif;\r\n}\r\n.btn:hover {\r\n  background: #45807d;\r\n}\r\n.next{\r\nfloat: right\r\n}\r\n.previous{\r\n float: left;\r\n}\r\n", ""]);
+	exports.push([module.id, "@charset \"UTF-8\";\n:root {\n  --s-width: 900px;\n  --s-gutter: 2.5rem;\n  --c-accent: hsl(213, 74%, 58%);\n}\n\n.stepper {\n  --s-stepper-bullet: 2rem;\n  --s-stepper-bullet-half: calc( var(--s-stepper-bullet) / 2 );\n  --step-transition: background .5s, color .5s;\n  --step-content: '\\2714\\FE0E';\n  --step-color: hsl(0, 0%, 70%);\n  --step-bar-bg: var(--c-accent);\n  --step-bullet-bg: var(--step-bar-bg);\n  --step-bullet-color: white;\n  counter-reset: current-step;\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(1px, 1fr));\n  position: relative;\n  z-index: 1;\n}\n\n\n.stepper__input {\n  counter-increment: steps;\n  display: none;\n}\n.stepper__step {\n  counter-increment: current-step;\n}\n.stepper__input:checked ~ .stepper__step {\n  --step-color: hsl(0, 0%, 30%);\n  --step-bar-bg: hsl(0, 0%, 40%);\n  --step-bullet-bg: var(--step-bar-bg);\n  --step-bullet-color: hsl(0, 0%, 20%);\n  --step-content: counter(current-step);\n}\n.stepper__input:checked ~ .stepper__step .stepper__content {\n  opacity: 0;\n  pointer-events: none;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n}\n.stepper__input:checked + .stepper__step {\n  --step-bullet-bg: hsl(213, 70%, 50%);\n  --step-bullet-color: white;\n  --step-color: black;\n}\n.stepper__input:checked + .stepper__step .stepper__button::before {\n  box-shadow: 0 0 0 2px #b3b3b3;\n}\n.stepper__input:checked + .stepper__step .stepper__content {\n  opacity: 1;\n  pointer-events: auto;\n  -webkit-user-select: auto;\n     -moz-user-select: auto;\n      -ms-user-select: auto;\n          user-select: auto;\n}\n.stepper__content {\n  color: white;\n  text-align: center;\n  font-style: italic;\n  font-weight: 300;\n  color: var(--step-color);\n  transition: opacity .5s .05s;\n  padding: .5rem;\n}\n.stepper__content::-moz-selection {\n  color: black;\n  background: var(--step-bullet-color);\n}\n.stepper__content::selection {\n  color: black;\n  background: var(--step-bullet-color);\n}\n.stepper__button {\n  position: relative;\n  text-align: center;\n  color: var(--step-color);\n  display: block;\n}\n.stepper__button::before {\n  content: var(--step-content);\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin: 0 auto var(--s-stepper-bullet-half);\n  height: var(--s-stepper-bullet);\n  width: var(--s-stepper-bullet);\n  border-radius: var(--s-stepper-bullet);\n  transition: var(--step-transition);\n  background: var(--step-bullet-bg);\n  color: var(--step-bullet-color);\n}\n.stepper__button::after {\n  content: '';\n  position: absolute;\n  width: 100%;\n  height: calc( var(--s-stepper-bullet-half) / 2 );\n  background: var(--step-bar-bg);\n  transition: var(--step-transition);\n  top: var(--s-stepper-bullet-half);\n  left: 50%;\n  -webkit-transform: translate(0, -50%);\n          transform: translate(0, -50%);\n  z-index: -1;\n}\n\n.stepper__step:last-child .stepper__button::after {\n  display: none;\n}\n.stepper--flexbox {\n  display: flex;\n}\n.stepper--flexbox .stepper__step {\n  flex-grow: 1;\n  flex-shrink: 0;\n  flex-basis: 0;\n}\n\n\n\n\n#sectionTabs {\n  font-size: 0.8em;\n  position: relative;\n  padding: 10px;\n  font-weight: bold;\n  list-style: none;\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(1px, 1fr));\n  text-transform: uppercase;\n}\n#sectionTabs li {\n  color: #a7a7a7;\n  cursor: pointer;\n  border-left: 1px solid #aaa;\n  text-decoration: none;\n  padding: 0 6px;\n  float: left;\n  box-sizing: border-box;\n  text-align: center;\n  font-weight: bold;\n  line-height: 40px;\n  background: #ddd;\n  position: relative;\n}\n#sectionTabs li:hover {\n  margin: 0px;\n  color: #a7a7a7;\n  cursor: pointer;\n  border-left: 1px solid #aaa;\n  text-decoration: none;\n  padding: 0 6px;\n  float: left;\n  box-sizing: border-box;\n  text-align: center;\n  font-weight: bold;\n  line-height: 40px;\n  background: rgb(233, 214, 214);\n  position: relative;\n}\n#sectionTabs li span {\n  color: #bababa;\n}\n#sectionTabs li.active {\n  color: #444;\n  cursor: pointer;\n}\n#sectionTabs li:after {\n  content: \"\";\n  display: block;\n  margin-left: 0;\n  position: absolute;\n  left: 0;\n  top: 0;\n}\n#sectionTabs li.current {\n  opacity: 1;\n  background: #eff1f5;\n  z-index: 999;\n  border-left: none;\n}\n#sectionTabs li.current:after {\n  border: 20px solid transparent;\n  border-left: 20px solid #2cbab2;\n}\n\n.btnss {\n  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);\n  -webkit-border-radius: 2px;\n  -moz-border-radius: 2px;\n  -ms-border-radius: 2px;\n  border-radius: 2px;\n  border: none;\n  font-size: 13px;\n  outline: none;\n  color: #fff;\n  background-color: #1f91f3;\n  padding: 10px 16px;\n  line-height: 1.3333333;\n  display: inline-block;\n  padding: 6px 12px;\n  font-size: 14px;\n  font-weight: normal;\n  line-height: 1.42857143;\n  text-align: center;\n  white-space: nowrap;\n  vertical-align: middle;\n  -ms-touch-action: manipulation;\n  touch-action: manipulation;\n  cursor: pointer;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  background-image: none;\n  border: 1px solid transparent;\n  border-radius: 4px;\n  overflow: visible;\n  margin: 0;\n}\n.btnss:hover {\n  background: #45807d;\n}\n.next{\n  float: right !important;\n}\n.previous{\n float: left !important;\n}\n\n.example-enter {\n  /* Prevent some white flashing in Safari 5.1 */\n  -webkit-backface-visibility: hidden;\n\n  -moz-border-radius:    20px;\n  -webkit-border-radius: 20px;\n  border-radius:         20px;\n\n  opacity: 0;\n\n  -webkit-transform: scale(0) skew(50deg);\n  -moz-transform:    scale(0) skew(50deg);\n  -ms-transform:     scale(0) skew(50deg);\n  -o-transform:      scale(0) skew(50deg);\n\n  -webkit-transform-origin: 0px -30px;\n  -moz-transform-origin:    0px -30px;\n  -ms-transform-origin:     0px -30px;\n  -o-transform-origin:      0px -30px;\n\n  -webkit-transition: -webkit-transform ease-out .55s, opacity ease-out .8s;\n  -moz-transition:    -moz-transform    ease-out .55s, opacity ease-out .8s;\n  -ms-transition:     -ms-transform     ease-out .55s, opacity ease-out .8s;\n  -o-transition:      -o-transform      ease-out .55s, opacity ease-out .8s;\n}\n\n.example-enter.example-enter-active {\n  opacity: 1;\n  -webkit-transform: scale(1) skew(0deg);\n  -moz-transform:    scale(1) skew(0deg);\n  -ms-transform:     scale(1) skew(0deg);\n  -o-transform:      scale(1) skew(0deg);\n}\n\n.example-exit {\n\n}\n\n.example-exit.example-exit-active {\n\n}\n\n.example1-enter {\n  overflow:hidden;\n  transform:translate(-100%)\n\n}\n\n.example1-enter.example-enter-active {\n  overflow:hidden;\n  transition:transform 0.3s ease-out;\n  transform:translate(-100%);\n  transform-origin:top;\n}\n\n.example1-exit {\n  overflow:hidden;\n  transition:transform 0.3s ease-out;\n  height:auto;\n  transform:scaleX(1);\n  transform-origin:top;\n}\n\n.example1-exit.example-exit-active {\n  transform:scaleX(0);\n}\n.wizard-heading{\n\n  padding: 8px 16px 8px 16px;\n  font-weight: bolder;\n  border-bottom: 1px solid lightgray;\n\n}\n", ""]);
 
 	// exports
 
 
 /***/ }),
-/* 202 */
+/* 201 */
 /***/ (function(module, exports) {
 
 	/*
@@ -23646,7 +23382,7 @@
 
 
 /***/ }),
-/* 203 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/*
