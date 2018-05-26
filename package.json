@@ -48,6 +48,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.0",
+    "gh-pages": "^1.1.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-eslint": "^3.0.1",
@@ -91,14 +92,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RajeshTiwariji/React_wizard.git"
+    "url": "git+https://github.com/RajeshTiwariji/React_wizard.git",
+    "homepage": "http://RajeshTiwariji.github.io/React_wizard.git"
   },
   "scripts": {
     "build": "node ./node_modules/gulp/bin/gulp.js build",
     "build-example": "node ./node_modules/gulp/bin/gulp.js build-example",
     "example": "webpack-dev-server",
     "lint": "node ./node_modules/gulp/bin/gulp.js lint",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "version": "1.0.5"
 }
